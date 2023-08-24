@@ -1,5 +1,6 @@
 #include "monty.h"
 
+global glob_var = {NULL, NULL, 0, NULL, NULL};
 
 /**
  *main - main function
@@ -11,7 +12,6 @@
 
 int main(int argc, char *argv[])
 {
-	global glob_var = {NULL, NULL, 0, NULL, NULL};
 	stack_t *stack = NULL;
 
 	if (argc != 2)
