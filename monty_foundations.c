@@ -119,6 +119,9 @@ int prepare_func(instruction_t *mon)
 	instruction_t cmp[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"nop", nop},
 		{NULL, NULL},
 	};
 
