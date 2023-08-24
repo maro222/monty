@@ -1,5 +1,10 @@
-#ifndef MONTY_H
-#define MONTY_H
+#ifndef MONTY_MONTY_H
+#define MONTY_MONTY_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
 
 
 /**
@@ -11,11 +16,12 @@
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
+
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -26,11 +32,45 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
+
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ *struct Global - global var across the files
+ *@file: the file to open
+ *@line_number: the line number
+ *@args: argument if there is
+ *@buffer: buffer if the file
+ *@opcode: opcode of the line of file
+ *Description: global vaible across the files
+ *to be used
+ */
+
+typedef struct Global
+{
+	FILE *file;
+	char *buffer;
+	unsigned int line_number;
+	char *args;
+	char *opcode;
+} global;
+
+extern global glob_var;
+
+void read_file(char *file, stack_t **stack);
+void prepare_opcode(char *line, instruction_t *mon, stack_t **stack);
+int prepare_func(instruction_t *mon);
+void allocateBuffer();
+
+int isnumber(char *str);
+void free_all();
+void free_stack(stack_t **stack);
+
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 
 #endif
