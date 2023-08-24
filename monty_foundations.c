@@ -11,6 +11,7 @@
 void read_file(char *file, stack_t **stack)
 {
 	instruction_t mon;
+
 	allocateBuffer();
 
 	glob_var.file = fopen(file, "r");
@@ -46,16 +47,16 @@ void read_file(char *file, stack_t **stack)
 /**
  *allocateBuffer - allocate memory for buffer
  *Return: nothing
- */ 
+ */
 void allocateBuffer(void)
 {
 	glob_var.buffer = (char *)malloc(sizeof(char) * INT_MAX);
 
 	if (!glob_var.buffer)
-        {
-                fprintf(stderr, "Error: malloc failed");
-                exit(EXIT_FAILURE);
-        }
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
 }
 
 
@@ -70,6 +71,7 @@ void allocateBuffer(void)
 void prepare_opcode(char *line, instruction_t *mon, stack_t **stack)
 {
 	char *token = NULL;
+
 	if (!line)
 		return;
 	mon->opcode = strtok(line, " \n");

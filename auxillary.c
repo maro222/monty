@@ -3,10 +3,9 @@
 
 /**
  *free_all - free all the memory
- *@stack: stack of the program
  *Return: nothing
  */
-void free_all()
+void free_all(void)
 {
 	if (glob_var.buffer)
 		free(glob_var.buffer);
@@ -22,7 +21,7 @@ void free_all()
  *Return: nothing
  */
 
-void free_stack(stack_t ** stack)
+void free_stack(stack_t **stack)
 {
 	stack_t *ptr =  (*stack);
 
