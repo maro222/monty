@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-monty language
-=======
 # 0x19. C - Stacks, Queues - LIFO, FIFO
 
 
@@ -28,4 +25,3 @@ The goal of this project is to create an interpreter for Monty ByteCodes files.
   - it finds an error in the file
   - an error occured
 - If you can’t malloc anymore, print the error message Error: malloc failed, followed by a new line, and exit with status EXIT_FAILURE.
->>>>>>> ac16595a9c12c4f578b58a7e5ee4e5d8183d5486
