@@ -71,7 +71,7 @@ void allocateBuffer(void)
 void prepare_opcode(char *line, instruction_t *mon, stack_t **stack)
 {
 	char *token = NULL;
-	
+
 	mon->opcode = strtok(line, " \t\n");
 	if (mon->opcode == NULL || mon->opcode[0] == '#')
 		return;
