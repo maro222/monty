@@ -8,12 +8,12 @@
  */
 void free_all()
 {
-	if (glob_var.buffer)
-		free(glob_var.buffer);
-	if (glob_var.args)
-		free(glob_var.args);
-	if (glob_var.opcode)
-		free(glob_var.opcode);
+	free(glob_var.buffer);
+	glob_var.buffer = NULL;
+	free(glob_var.args);
+	glob_var.args = NULL;
+	free(glob_var.opcode);
+	glob_var.opcode = NULL;
 }
 
 /**
@@ -26,6 +26,8 @@ void free_stack(stack_t ** stack)
 {
 	stack_t *ptr =  (*stack);
 
+	if ((*stack) == NULL)
+		return;
 	while (*stack)
 	{
 		(*stack) = (*stack)->next;

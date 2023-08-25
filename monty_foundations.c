@@ -19,7 +19,7 @@ void read_file(char *file, stack_t **stack)
 		fprintf(stderr, "Can't open file %s", file);
 		exit(EXIT_FAILURE);
 	}
-	while ((fgets(glob_var.buffer, INT_MAX, glob_var.file)) != NULL)
+	while ((fgets(glob_var.buffer, 200, glob_var.file)) != NULL)
 	{
 		prepare_opcode(glob_var.buffer, &mon, stack);
 		glob_var.line_number++;
@@ -49,7 +49,7 @@ void read_file(char *file, stack_t **stack)
  */ 
 void allocateBuffer(void)
 {
-	glob_var.buffer = (char *)malloc(sizeof(char) * INT_MAX);
+	glob_var.buffer = (char *)malloc(sizeof(char) * 200);
 
 	if (!glob_var.buffer)
         {
@@ -70,9 +70,8 @@ void allocateBuffer(void)
 void prepare_opcode(char *line, instruction_t *mon, stack_t **stack)
 {
 	char *token = NULL;
-	if (!line)
-		return;
-	mon->opcode = strtok(line, " \n");
+	
+	mon->opcode = strtok(line, " \t\n");
 	if (mon->opcode == NULL || mon->opcode[0] == '#')
 		return;
 
@@ -100,7 +99,6 @@ void prepare_opcode(char *line, instruction_t *mon, stack_t **stack)
 		if (glob_var.file)
 			fclose(glob_var.file);
 		exit(EXIT_FAILURE);
-
 	}
 	strcpy(glob_var.args, token);
 }
