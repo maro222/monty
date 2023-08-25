@@ -17,8 +17,7 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer", line_number);
 		free_stack(stack);
 		free_all();
-		if (glob_var.file)
-			fclose(glob_var.file);
+		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -29,8 +28,7 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed");
 		free_stack(stack);
 		free_all();
-		if (glob_var.file)
-			fclose(glob_var.file);
+		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
 	node->n = atoi(glob_var.args);
@@ -62,6 +60,7 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 		printf("%d\n", ptr->n);
 		ptr = ptr->next;
 	}
+
 }
 
 /**
@@ -71,12 +70,12 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 */
 void pint(stack_t **stack, unsigned int line_number)
 {
-	if ((*stack)->next == NULL)
+	if ((*stack) == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", (*stack)->next->n);
+	printf("%d\n", (*stack)->n);
 }
 
 
@@ -95,10 +94,11 @@ void pop(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	*stack = node->next;
-	if (*stack != NULL)
-		(*stack)->prev = NULL;
+	node = (*stack);
+	(*stack) = (*stack)->next;
 	free(node);
+	node = NULL;
+	(*stack)->prev = NULL;
 }
 
 

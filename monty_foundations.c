@@ -11,8 +11,7 @@
 void read_file(char *file, stack_t **stack)
 {
 	instruction_t mon;
-
-	allocateBuffer();
+	size_t initial_size = 0;
 
 	glob_var.file = fopen(file, "r");
 	if (glob_var.file == NULL)
@@ -20,43 +19,30 @@ void read_file(char *file, stack_t **stack)
 		fprintf(stderr, "Can't open file %s", file);
 		exit(EXIT_FAILURE);
 	}
-	while ((fgets(glob_var.buffer, 200, glob_var.file)) != NULL)
+	while ((getline(&glob_var.buffer, &initial_size, glob_var.file)) != -1)
 	{
-		prepare_opcode(glob_var.buffer, &mon, stack);
+		prepare_opcode(glob_var.buffer, stack);
 		glob_var.line_number++;
 
 		if (prepare_func(&mon))
-			mon.f(stack, glob_var.line_number);
+		{
+			if (glob_var.opcode)
+				mon.f(stack, glob_var.line_number);
+		}
 		else
 		{
 			printf("L%d: unknown instruction %s"
 					, glob_var.line_number, mon.opcode);
 			free_stack(stack);
 			free_all();
-			if (glob_var.file)
-				fclose(glob_var.file);
+			fclose(glob_var.file);
 			exit(EXIT_FAILURE);
 		}
 		free_all();
-		allocateBuffer();
 	}
 	free_stack(stack);
 	free(glob_var.buffer);
-}
-
-/**
- *allocateBuffer - allocate memory for buffer
- *Return: nothing
- */
-void allocateBuffer(void)
-{
-	glob_var.buffer = (char *)malloc(sizeof(char) * 200);
-
-	if (!glob_var.buffer)
-	{
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
-	}
+	fclose(glob_var.file);
 }
 
 
@@ -68,25 +54,24 @@ void allocateBuffer(void)
  *Return: opcode on success, NULL on failure
  */
 
-void prepare_opcode(char *line, instruction_t *mon, stack_t **stack)
+void prepare_opcode(char *line, stack_t **stack)
 {
 	char *token = NULL;
 	
-	mon->opcode = strtok(line, " \t\n");
-	if (mon->opcode == NULL || mon->opcode[0] == '#')
+	token = strtok(line, " \t\n");
+	if (token == NULL || token[0] == '#')
 		return;
 
-	glob_var.opcode = malloc(sizeof(char) * (strlen(mon->opcode) + 1));
+	glob_var.opcode = malloc(sizeof(char) * (strlen(token) + 1));
 	if (!glob_var.opcode)
 	{
 		fprintf(stderr, "Error: malloc failed");
 		free_stack(stack);
 		free_all();
-		if (glob_var.file)
-			fclose(glob_var.file);
+		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
-	strcpy(glob_var.opcode, mon->opcode);
+	strcpy(glob_var.opcode, token);
 
 	token = strtok(NULL, " \n");
 	if (!token)
@@ -97,8 +82,7 @@ void prepare_opcode(char *line, instruction_t *mon, stack_t **stack)
 		fprintf(stderr, "Error: malloc failed");
 		free_stack(stack);
 		free_all();
-		if (glob_var.file)
-			fclose(glob_var.file);
+		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
 	strcpy(glob_var.args, token);
@@ -122,9 +106,11 @@ int prepare_func(instruction_t *mon)
 		{NULL, NULL},
 	};
 
+	if (!glob_var.opcode)
+		return (1);
 	for (i = 0; cmp[i].opcode; i++)
 	{
-		if (strcmp(mon->opcode, cmp[i].opcode) == 0 && mon->opcode)
+		if (strcmp(glob_var.opcode, cmp[i].opcode) == 0)
 		{
 			mon->f = cmp[i].f;
 			return (1);

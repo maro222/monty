@@ -1,6 +1,7 @@
 push 1
-pint
 push 2
 pint
+pall
 push 3
 pint
+pall

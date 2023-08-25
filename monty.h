@@ -1,5 +1,6 @@
 #ifndef MONTY_MONTY_H
 #define MONTY_MONTY_H
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,9 +63,8 @@ typedef struct Global
 extern global glob_var;
 
 void read_file(char *file, stack_t **stack);
-void prepare_opcode(char *line, instruction_t *mon, stack_t **stack);
+void prepare_opcode(char *line, stack_t **stack);
 int prepare_func(instruction_t *mon);
-void allocateBuffer();
 
 int isnumber(char *str);
 void free_all();

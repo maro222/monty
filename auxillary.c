@@ -33,6 +33,7 @@ void free_stack(stack_t **stack)
 		free(ptr);
 		ptr = (*stack);
 	}
+	(*stack) = NULL;
 }
 
 
@@ -48,8 +49,10 @@ int isnumber(char *str)
 
 	if (!str)
 		return (0);
+	if (str[0] == '-' && strlen(str) > 1)
+		i = 1;
 
-	for (i = 0; str[i]; i++)
+	for (; str[i]; i++)
 	{
 		if (str[i] < 48 || str[i] > 57)
 			return (0);
