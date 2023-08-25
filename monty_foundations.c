@@ -11,6 +11,7 @@
 void read_file(char *file, stack_t **stack)
 {
 	instruction_t mon;
+
 	allocateBuffer();
 
 	glob_var.file = fopen(file, "r");
@@ -46,16 +47,16 @@ void read_file(char *file, stack_t **stack)
 /**
  *allocateBuffer - allocate memory for buffer
  *Return: nothing
- */ 
+ */
 void allocateBuffer(void)
 {
 	glob_var.buffer = (char *)malloc(sizeof(char) * 200);
 
 	if (!glob_var.buffer)
-        {
-                fprintf(stderr, "Error: malloc failed");
-                exit(EXIT_FAILURE);
-        }
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
 }
 
 
@@ -115,6 +116,9 @@ int prepare_func(instruction_t *mon)
 	instruction_t cmp[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"nop", nop},
 		{NULL, NULL},
 	};
 
