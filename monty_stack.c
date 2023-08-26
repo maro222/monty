@@ -73,7 +73,6 @@ void pint(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		free_all();
-		free_stack(stack);
 		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
@@ -95,15 +94,12 @@ void pop(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		free_all();
-		free_stack(stack);
 		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
-	node = (*stack);
 	(*stack) = (*stack)->next;
 	free(node);
 	node = NULL;
-	(*stack)->prev = NULL;
 }
 
 
