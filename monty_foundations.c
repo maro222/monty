@@ -31,7 +31,7 @@ void read_file(char *file, stack_t **stack)
 		}
 		else
 		{
-			printf("L%d: unknown instruction %s\n"
+			printf("L%u: unknown instruction %s\n"
 					, glob_var.line_number, glob_var.opcode);
 			free_stack(stack);
 			free_all();
@@ -102,6 +102,7 @@ int prepare_func(instruction_t *mon)
 		{"pint", pint},
 		{"pop", pop},
 		{"nop", nop},
+		{"sub", sub},
 		{NULL, NULL},
 	};
 
@@ -109,7 +110,7 @@ int prepare_func(instruction_t *mon)
 		return (1);
 	for (i = 0; cmp[i].opcode; i++)
 	{
-		if (_strcmp(glob_var.opcode, cmp[i].opcode) == 0)
+		if (strcmp(glob_var.opcode, cmp[i].opcode) == 0)
 		{
 			mon->f = cmp[i].f;
 			return (1);

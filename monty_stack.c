@@ -14,7 +14,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!isnumber(glob_var.args) || !glob_var.args)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_stack(stack);
 		free_all();
 		fclose(glob_var.file);
@@ -57,7 +57,7 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 
 	while (ptr)
 	{
-		printf("%d\n", ptr->n);
+		printf("%u\n", ptr->n);
 		ptr = ptr->next;
 	}
 }
@@ -71,12 +71,12 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	if ((*stack) == NULL)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		free_all();
 		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", (*stack)->n);
+	printf("%u\n", (*stack)->n);
 }
 
 
@@ -92,7 +92,7 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		free_all();
 		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
