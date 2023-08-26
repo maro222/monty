@@ -4,8 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <limits.h>
 
 
 /**
@@ -65,6 +63,11 @@ extern global glob_var;
 void read_file(char *file, stack_t **stack);
 void prepare_opcode(char *line, stack_t **stack);
 int prepare_func(instruction_t *mon);
+
+char *_strtok(char *str, const char *delim);
+int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+int _strlen(char *c);
 
 int isnumber(char *str);
 void free_all();

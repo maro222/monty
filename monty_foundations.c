@@ -71,7 +71,7 @@ void prepare_opcode(char *line, stack_t **stack)
 		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
-	strcpy(glob_var.opcode, token);
+	_strcpy(glob_var.opcode, token);
 
 	token = strtok(NULL, " \n");
 	if (!token)
@@ -85,7 +85,7 @@ void prepare_opcode(char *line, stack_t **stack)
 		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
-	strcpy(glob_var.args, token);
+	_strcpy(glob_var.args, token);
 }
 
 /**
@@ -110,7 +110,7 @@ int prepare_func(instruction_t *mon)
 		return (1);
 	for (i = 0; cmp[i].opcode; i++)
 	{
-		if (strcmp(glob_var.opcode, cmp[i].opcode) == 0)
+		if (_strcmp(glob_var.opcode, cmp[i].opcode) == 0)
 		{
 			mon->f = cmp[i].f;
 			return (1);
@@ -118,3 +118,46 @@ int prepare_func(instruction_t *mon)
 	}
 	return (0);
 }
+
+
+/**
+ *_strtok - tokenizes str to smaller tokens
+ *@str: string to be tokenized
+ *@delim: delimeter to be token on
+ *
+ *Return: tokens
+ */
+char *_strtok(char *str, const char *delim) {
+    static char *last = NULL;
+    char *token = NULL;
+
+    if (str != NULL) {
+        last = str;
+    }
+
+    if (last == NULL) {
+        return NULL;
+    }
+
+    token = last;
+
+    while (*last != '\0') {
+        const char *d = delim;
+
+        while (*d != '\0') {
+            if (*last == *d) {
+                *last = '\0';
+                last++;
+                return token;
+            }
+
+            d++;
+        }
+
+        last++;
+    }
+
+    last = NULL;
+    return token;
+}
+
