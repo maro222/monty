@@ -103,6 +103,7 @@ int prepare_func(instruction_t *mon)
 		{"pop", pop},
 		{"nop", nop},
 		{"sub", sub},
+		{"div", _div},
 		{NULL, NULL},
 	};
 

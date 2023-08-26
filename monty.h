@@ -70,12 +70,13 @@ int isnumber(char *str);
 void free_all(void);
 void free_stack(stack_t **stack);
 
-/* stack functions */
+
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line);
 void pop(stack_t **stack, unsigned int line);
 void nop(stack_t **stack, unsigned int line);
 void sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
 
 #endif
