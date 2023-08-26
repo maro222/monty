@@ -16,7 +16,7 @@ void read_file(char *file, stack_t **stack)
 	glob_var.file = fopen(file, "r");
 	if (glob_var.file == NULL)
 	{
-		fprintf(stderr, "Can't open file %s", file);
+		fprintf(stderr, "Error: Can't open file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
 	while ((getline(&glob_var.buffer, &initial_size, glob_var.file)) != -1)
@@ -31,7 +31,7 @@ void read_file(char *file, stack_t **stack)
 		}
 		else
 		{
-			printf("L%d: unknown instruction %s"
+			printf("L%d: unknown instruction %s\n"
 					, glob_var.line_number, mon.opcode);
 			free_stack(stack);
 			free_all();
@@ -64,7 +64,7 @@ void prepare_opcode(char *line, stack_t **stack)
 	glob_var.opcode = malloc(sizeof(char) * (strlen(token) + 1));
 	if (!glob_var.opcode)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_stack(stack);
 		free_all();
 		fclose(glob_var.file);
@@ -78,7 +78,7 @@ void prepare_opcode(char *line, stack_t **stack)
 	glob_var.args = (char *)malloc(sizeof(char) * (strlen(token) + 1));
 	if (!glob_var.args)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_stack(stack);
 		free_all();
 		fclose(glob_var.file);

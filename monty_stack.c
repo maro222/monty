@@ -12,9 +12,9 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *node;
 
-	if (!isnumber(glob_var.args))
+	if (!isnumber(glob_var.args) || !glob_var.args)
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_stack(stack);
 		free_all();
 		fclose(glob_var.file);
@@ -25,7 +25,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!node)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_stack(stack);
 		free_all();
 		fclose(glob_var.file);
@@ -60,7 +60,6 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 		printf("%d\n", ptr->n);
 		ptr = ptr->next;
 	}
-
 }
 
 /**
