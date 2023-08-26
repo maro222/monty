@@ -61,3 +61,23 @@ void _div(stack_t **stack, unsigned int line_number)
 	ptr->next->n /= ptr->n;
 	pop(stack, line_number);
 }
+
+
+void mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *ptr = NULL;
+
+	if (!stack || !(*stack) || !(*stack)->next)
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+		free_all();
+		free_stack(stack);
+		fclose(glob_var.file);
+		exit(EXIT_FAILURE);
+	}
+
+	ptr = (*stack);
+	ptr->next->n *= ptr->n;
+	pop(stack, line_number);
+}
+
