@@ -40,7 +40,7 @@ void _div(stack_t **stack, unsigned int line_number)
 
 	if (!stack || !(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
 		free_all();
 		free_stack(stack);
 		fclose(glob_var.file);
