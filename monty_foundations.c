@@ -105,6 +105,7 @@ int prepare_func(instruction_t *mon)
 		{"sub", sub},
 		{"div", _div},
 		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL},
 	};
 

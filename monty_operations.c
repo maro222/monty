@@ -81,3 +81,39 @@ void mul(stack_t **stack, unsigned int line_number)
 	pop(stack, line_number);
 }
 
+/**
+ *mod - The opcode mod computes the rest of the division
+ *      of the second top element of the stack by the top element of the stack.
+ *@stack: stack of our 7
+ *
+ *
+ */ 
+
+void mod(stack_t **stack, unsigned int line_number)
+{
+	stack_t *ptr = NULL;
+
+	if (!stack || !(*stack) || !(*stack)->next)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		free_all();
+		free_stack(stack);
+		fclose(glob_var.file);
+		exit(EXIT_FAILURE);
+	}
+
+	ptr = (*stack);
+
+	if (ptr->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		free_all();
+		free_stack(stack);
+		fclose(glob_var.file);
+		exit(EXIT_FAILURE);
+	}
+
+	ptr->next->n %= ptr->n;
+	pop(stack, line_number);
+}
+
