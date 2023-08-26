@@ -49,7 +49,6 @@ void read_file(char *file, stack_t **stack)
 /**
  *prepare_opcode - handle the opcode from(trailing-leading-between_line)spaces
  *@line: the line to handle
- *@mon: pointer of instryction_t dadt type
  *@stack: stack of gprogram
  *Return: opcode on success, NULL on failure
  */
@@ -57,7 +56,7 @@ void read_file(char *file, stack_t **stack)
 void prepare_opcode(char *line, stack_t **stack)
 {
 	char *token = NULL;
-	
+
 	token = strtok(line, " \t\n");
 	if (token == NULL || token[0] == '#')
 		return;

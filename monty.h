@@ -71,7 +71,7 @@ char *_strcpy(char *dest, char *src);
 int _strlen(char *c);
 
 int isnumber(char *str);
-void free_all();
+void free_all(void);
 void free_stack(stack_t **stack);
 
 /* stack functions */
