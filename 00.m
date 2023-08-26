@@ -1,1 +1,1 @@
-pus
+pint

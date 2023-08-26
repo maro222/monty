@@ -108,8 +108,7 @@ void pop(stack_t **stack, unsigned int line_number)
  * @stack: Pointer to the top node of a stack linked list.
  * @line_number: current line number of the bytecode file.
  */
-void nop(stack_t **stack, unsigned int line_number)
+void nop(__attribute__ ((unused))stack_t **stack, 
+		__attribute__ ((unused))unsigned int line_number)
 {
-	(void)stack;
-	(void)line_number;
 }
