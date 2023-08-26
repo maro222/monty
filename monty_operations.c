@@ -10,7 +10,7 @@
 
 void sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *ptr;
+	stack_t *ptr = NULL;
 
 	if (!stack || !*stack || !(*stack)->next)
 	{
