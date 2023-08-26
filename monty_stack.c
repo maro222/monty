@@ -57,7 +57,7 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 
 	while (ptr)
 	{
-		printf("%u\n", ptr->n);
+		printf("%d\n", ptr->n);
 		ptr = ptr->next;
 	}
 }
@@ -76,7 +76,7 @@ void pint(stack_t **stack, unsigned int line_number)
 		fclose(glob_var.file);
 		exit(EXIT_FAILURE);
 	}
-	printf("%u\n", (*stack)->n);
+	printf("%d\n", (*stack)->n);
 }
 
 
