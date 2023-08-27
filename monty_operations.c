@@ -92,7 +92,7 @@ void mul(stack_t **stack, unsigned int line_number)
  *mod - The opcode mod computes the rest of the division
  *      of the second top element of the stack by the top element of the stack.
  *@stack: stack of our 7
- *@line_nuber: line_number of opcode
+ *@line_number: line_number of opcode
  *Return: nothing
  */
 
