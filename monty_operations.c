@@ -1,25 +1,6 @@
 #include "monty.h"
 
 /**
- * add-  adds the top two elements of the stack
- * *@stack: stack of our program
- *@line_number: line number of opcode
- *Return: nothing
- */
-
-void _add(stack_t **stack, unsigned int line_number)
-{
-	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	(*stack)->next->next->n += (*stack)->next->n;
-	pop(stack, line_number);
-}
-
-/**
  *sub - The opcode sub subtracts the top element of the stack
  *      from the second top element of the stack.
  *@stack: stack of our program
