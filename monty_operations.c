@@ -50,18 +50,25 @@ void _div(stack_t **stack, unsigned int line_number)
 	ptr = (*stack);
 
 	if (ptr->n == 0)
-        {
-                fprintf(stderr, "L%u: division by zero\n", line_number);
-                free_all();
-                free_stack(stack);
-                fclose(glob_var.file);
-                exit(EXIT_FAILURE);
-        }
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		free_all();
+		free_stack(stack);
+		fclose(glob_var.file);
+		exit(EXIT_FAILURE);
+	}
 
 	ptr->next->n /= ptr->n;
 	pop(stack, line_number);
 }
 
+/**
+ *mul - The opcode mul multiplies the second top element of the stack
+ *      with the top element of the stack.
+ *@stack: stack of our program
+ *@line_number: line number of the opcode
+ *Return: nothing
+ */
 
 void mul(stack_t **stack, unsigned int line_number)
 {
@@ -85,9 +92,9 @@ void mul(stack_t **stack, unsigned int line_number)
  *mod - The opcode mod computes the rest of the division
  *      of the second top element of the stack by the top element of the stack.
  *@stack: stack of our 7
- *
- *
- */ 
+ *@line_nuber: line_number of opcode
+ *Return: nothing
+ */
 
 void mod(stack_t **stack, unsigned int line_number)
 {
