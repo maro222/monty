@@ -16,12 +16,13 @@ void swap(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	block = (*stack)->next->next;
-	(*stack)->next->next = block->next;
-	(*stack)->next->prev = block;
+	block = (*stack)->next;
+	(*stack)->prev = (*stack)->next;
+	(*stack)->next = block->next;
+	block->prev = NULL;
+	(*stack)->prev = block;
 	if (block->next)
-		block->next->prev = (*stack)->next;
-	block->next = (*stack)->next;
-	block->prev = *stack;
-	(*stack)->next = block;
+		block->next->prev = *stack;
+	block->next = *stack;
+	(*stack) = (*stack)->prev;
 }
