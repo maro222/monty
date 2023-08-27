@@ -1,4 +1,4 @@
-push 10
-push 5
-mod
+push 98
+push 402
+mult
 pall
