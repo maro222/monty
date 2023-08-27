@@ -31,7 +31,7 @@ void read_file(char *file, stack_t **stack)
 		}
 		else
 		{
-			printf("L%u: unknown instruction %s\n"
+			fprintf(stderr, "L%u: unknown instruction %s\n"
 					, glob_var.line_number, glob_var.opcode);
 			free_stack(stack);
 			free_all();
