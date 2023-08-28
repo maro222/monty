@@ -4,6 +4,7 @@
  * swap - swaps the top two elements of the stack
  * @stack: pointer to linked list for monty stack
  * @line_number: number of line opcode occurs on
+ * Return: nothing
  */
 
 void swap(stack_t **stack, unsigned int line_number)
