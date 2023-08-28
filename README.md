@@ -1,16 +1,26 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
 
 
+### ALX Team project
+
+
+## Contributers:
+
+- Omar Farouk
+- Amal Dahshan
+
+## Purpose:
+
 The goal of this project is to create an interpreter for Monty ByteCodes files.
 
+## **Usage:** monty file
+  - where file is the path to the file containing Monty byte code
 
 ## Description:
 
 
 **The monty program**
 
-- **Usage:** monty file
-  - where file is the path to the file containing Monty byte code
 - If the user does not give any file or more than one argument to your program, print the error message USAGE: monty file,
  followed by a new line, and exit with the status EXIT_FAILURE
 - If, for any reason, it’s not possible to open the file, print the error message Error: Can't open file <file>,
