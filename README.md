@@ -17,7 +17,21 @@ The goal of this project is to create an interpreter for Monty ByteCodes files.
   - where file is the path to the file containing Monty byte code
 
 ## Description:
+# Monty Bytecode Interpreter
 
+## Description
+
+The **Monty Bytecode Interpreter** is a simple program designed to execute Monty bytecode files. Bytecode is a low-level, stack-based programming language. This interpreter processes Monty bytecode line by line, performing stack operations such as pushing, popping, and manipulating data.
+
+Monty is used for learning and exploring stack-based operations, making it a great tool for understanding how interpreters and virtual machines function.
+
+## Features
+
+- **Stack Operations**: Supports fundamental stack operations like `push`, `pall`, `pint`, `pop`, `swap`, and more.
+- **Error Handling**: Provides comprehensive error messages for various issues such as invalid instructions, file access errors, and memory allocation failures.
+- **Line-by-Line Execution**: Reads and executes bytecode instructions line by line.
+  
+The interpreter halts execution upon encountering an error or successfully processing all instructions in the file.
 
 **The monty program**
 
