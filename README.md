@@ -1,21 +1,5 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
 
-
-### ALX Team project
-
-
-## Contributers:
-
-- Omar Farouk
-- Amal Dahshan
-
-## Purpose:
-
-The goal of this project is to create an interpreter for Monty ByteCodes files.
-
-## **Usage:** monty file
-  - where file is the path to the file containing Monty byte code
-
 ## Monty Bytecode Interpreter
 
 ### Description
@@ -50,3 +34,17 @@ The interpreter halts execution upon encountering an error or successfully proce
   - it finds an error in the file
   - an error occured
 - If you can’t malloc anymore, print the error message Error: malloc failed, followed by a new line, and exit with status EXIT_FAILURE.
+
+
+### ALX Team project
+## Contributers:
+
+- Omar Farouk
+- Amal Dahshan
+
+## Purpose:
+
+The goal of this project is to create an interpreter for Monty ByteCodes files.
+
+## **Usage:** monty file
+  - where file is the path to the file containing Monty byte code
